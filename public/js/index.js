@@ -25,7 +25,7 @@ socket.on('roomUsers', ({room, users}) => {
 });
 
 // Message from server
-socket.on('messaage', (message) => {
+socket.on('message', (message) => {
     console.log(message);
     showMessage(message);
 
@@ -33,11 +33,10 @@ socket.on('messaage', (message) => {
 });
 
 chatForm.addEventListener('submit', (e) => {
-    console.log(e);
+    e.preventDefault();
 
     let msg = e.target.elements.msg.value;
 
-    console.log(msg);
 
     msg = msg.trim();
 
@@ -46,13 +45,11 @@ chatForm.addEventListener('submit', (e) => {
         return false
     }
 
-    socket.emit('message', msg);
+    socket.emit('chatMessage', msg);
 
     e.target.elements.msg.value = '';
     e.target.elements.msg.focus();
 });
-
-
 
 
 
@@ -64,15 +61,10 @@ function showMessage(message) {
 
     const p = document.createElement('p');
     p.classList.add('meta');
-    p.innerText = message.username;
+    p.innerText = message.username + " : "  + message.text;
+    p.style.color = message.color;
 
     div.appendChild(p);
-
-    const p_message = document.createElement('p');
-    p_message.classList.add('text');
-    p_message.innerText = message.text;
-
-    div.appendChild(p_message)
 
     document.querySelector('.chat-messages').appendChild(div);
 };
@@ -81,7 +73,7 @@ function showMessage(message) {
 
 function showRoomName(room) {
 
-    roomName.innerHTML = room;
+    roomName.innerHTML = "ROOM NAME :" + room;
 }
 
 //show users

@@ -22,19 +22,17 @@ app.use(express.static(publicPath))
 // run when user connects
 io.on('connection', (socket) => {
 
-    console.log("NEW USER IS Conncted!")
 
     socket.on( "joinRoom", ({username, room}) => {
-        console.log(`Joined! ${username} to ${room}`)
 
-        const user = userJoin(socket.id, username, room);
+        const user = userJoin(socket.id, username, room, "#" + Math.floor(Math.random()*16777215).toString(16));
 
         socket.join(user.room);
 
-        socket.emit("message", formatMessage("Admin", `WELCOME! ${username}`));
+        socket.emit("message", formatMessage("Admin", `WELCOME! ${username}`), 'red');
 
         socket.broadcast.to(user.room).emit('message',
-                                            formatMessage('Admin', `${username} has joined!`));
+                                            formatMessage('Admin', `${username} has joined!`), 'red');
         io.to(user.room).emit('roomUsers', {
             room: user.room,
             users: getRoomUsers(user.room)
@@ -42,18 +40,18 @@ io.on('connection', (socket) => {
     });
 
     socket.on('chatMessage', (msg) => {
+        
         const user = getCurrentUser(socket.id);
-
-        io.to(user.room).emit('message', formatMessage(user.username, msg));
+        io.to(user.room).emit('message', formatMessage(user.username, msg, user.color));
     });
     
     socket.on("disconnect", () => {
-        console.log("user is disconnected from server.")
 
+    
         const user = userLeave(socket.id);
 
         if (user) {
-            io.to(user.room).emit('message', formatMessage('Admin',`${user.username} has left!`));
+            io.to(user.room).emit('message', formatMessage('Admin',`${user.username} has left!`), 'red');
 
             io.to(user.room).emit('roomUsers', {
                 room: user.room,

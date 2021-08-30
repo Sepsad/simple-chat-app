@@ -1,8 +1,9 @@
-function formatMessage (username, text) {
+function formatMessage (username, text, color) {
 
     return { 
             username,
-            text 
+            text,
+            color
         };
 }
 
