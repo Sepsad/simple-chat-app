@@ -13,6 +13,10 @@ let io = socketIO(server);
 
 io.on('connection', (socket) => {
     console.log("NEW USER IS HERE!")
+
+    socket.on( 'creatMessage', (messeage) => {
+        console.log("creatMessage", messeage);
+    } )
     
     socket.on("disconnect", () => {
         console.log("new user is disconnected from server.")

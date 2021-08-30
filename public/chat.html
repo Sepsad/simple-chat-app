@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHAT room</title>
+</head>
+<body>
+    <div>
+        <header>
+            <h1>Chat!</h1>
+            <a>leave room</a>
+        </header>
+        <main>
+            <div>
+                <h3>room name:</h3>
+                <h2 id = "room-name"></h2>
+
+                <h3>users:</h3>
+                <ul id="users"></ul>
+            </div>
+
+            <div class="chat-messages"></div>
+
+        </main>
+
+        <div>
+            <form id = "chat-form">
+                <input
+                    id="msg"
+                    type="text"
+                    placeholder="Write your message..."
+                    required
+                    autocomplete="off"
+                />
+                <button> send</button>
+            </form>
+        </div>
+    </div>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.2/qs.min.js"
+      integrity="sha256-TDxXjkAUay70ae/QJBEpGKkpVslXaHHayklIVglFRT4="
+      crossorigin="anonymous"
+    ></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/index.js"></script>
+
+
+
+
+
+
+</body>
+</html>

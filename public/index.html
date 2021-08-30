@@ -4,25 +4,51 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>chat app</title>
 </head>
 <body>
-    <p>Welcome to the chat app.</p >
-    
+    <header>
+
+        <h1>Welcome to the chat app.</h1 >
+    </header>
+
+    <main>
+        <form action="./chat.html">
+            <div>
+                <label for="username">
+                    Username
+                </label>
+                <input
+                    type="text"
+                    name="username"
+                    placeholder="Enter your name ...."
+                    required
+                />
+            </div>
+            <div>
+                <label for="room" >Room</label>
+                <input
+                type="text"
+                name="room"
+                id= "room"
+                placeholder="Enter the room name ...."
+                required
+            />
+            </div>
+            <button type="submit"> JOIN</button>
+        
+        
+        
+        </form>
+    </main>
 
 
-    <script src="/socket.io/socket.io.js"></script>
-    <script type="text/javascript" >
-    let socket = io();
 
-    socket.on("connect", () => {
-        console.log("you are Connected!")
-    })
-    
-    socket.on("disconnect", () => {
-        console.log("you are disConnected!")
-    } )
-    </script>
+
+
+
+    <!-- <script src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="/js/index.js" ></script> -->
 
     
 </body>
